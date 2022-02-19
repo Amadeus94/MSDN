@@ -13,17 +13,25 @@ public class State {
 		this.name = name;
 	}
 
-	public Object getName() {
+	public String getName() {
 		return name;
 	}
+	
+	public void addTransition(Transition t) {
+		this.trans.add(t);
+	}
+	
 
 	public List<Transition> getTransitions() {
 		return trans;
 	}
 
-	public Transition getTransitionByEvent(String string) {
-		// TODO Auto-generated method stub
+	public Transition getTransitionByEvent(String event) {
+		for( Transition t: trans){
+			if(t.getEvent() == event) {
+				return t;
+			}
+		}
 		return null;
 	}
-
 }

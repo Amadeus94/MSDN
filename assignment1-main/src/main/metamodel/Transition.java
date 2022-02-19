@@ -1,35 +1,48 @@
 package main.metamodel;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class Transition {
+	private String event;
+	private State to;
+	private Runnable effect; 
+	//private List<String> = new ArrayList<>();
+    private Map<String, Transition> operations  = new HashMap<String, Transition>();
+	
+    
+    public Transition(String event, State to) {
+		super();
+		this.event = event;
+		this.to = to;
+	}
 
 	public Object getEvent() {
-		// TODO Auto-generated method stub
-		return null;
+		return event;
 	}
 
 	public State getTarget() {
-		// TODO Auto-generated method stub
-		return null;
+		return to;
 	}
 
 	public boolean hasSetOperation() {
-		// TODO Auto-generated method stub
-		return false;
+		return event =="SET" ? true: false;
+		//return operations.containsKey("SET") ? true: false;
 	}
-
+	
+	
 	public boolean hasIncrementOperation() {
-		// TODO Auto-generated method stub
-		return false;
+		return operations.containsKey("INCREMENT") ? true: false;
 	}
 
 	public boolean hasDecrementOperation() {
-		// TODO Auto-generated method stub
-		return false;
+		return operations.containsKey("DECREMENT") ? true: false;
 	}
 
-	public Object getOperationVariableName() {
-		// TODO Auto-generated method stub
-		return null;
+	public String getOperationVariableName() {
+		return event;
 	}
 
 	public boolean isConditional() {

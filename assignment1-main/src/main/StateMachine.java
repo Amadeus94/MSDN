@@ -1,6 +1,8 @@
 package main;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import main.metamodel.*;
@@ -11,10 +13,15 @@ public class StateMachine {
 	private State current;
 	private State initial = new State("initial State");
 	private String currentEvent;
+	private List<String> integerList = new ArrayList<>();
+	private Map<String, Integer> integerList2 = new HashMap<>();
+	
 
 	
 	public Machine build() {
-		return new Machine(states.values(), initial);
+//		return new Machine(states.values(), initial);
+		return new Machine(states.values(), initial,integerList, integerList2);
+		
 	}
 
 	public StateMachine state(String name) {
@@ -40,34 +47,47 @@ public class StateMachine {
 		return this;
 	}
 
-	public StateMachine to(String string) {
-		// TODO Auto-generated method stub
-		return null;
+	public StateMachine to(String state) {
+	Transition t = new Transition(currentEvent,getState(state));
+	current.addTransition(t);
+	return this;
+
 	}
 
 	public StateMachine integer(String string) {
-		// TODO Auto-generated method stub
-		return null;
+		integerList2.put(string, null);
+		integerList.add(string);
+		
+		return this;
 	}
 
-	public StateMachine set(String string, int i) {
-		// TODO Auto-generated method stub
-		return null;
+	public StateMachine set(String event, int i) {
+		integerList2.put(event, i);
+		integerList.add(event);
+		
+//		for(int i = 0; i < integerList.size(); i++) {
+//			if (integerList.get(i) == event)
+//					integerList.set(i, event);
+//		}
+		return this;
 	}
 
 	public StateMachine increment(String string) {
-		// TODO Auto-generated method stub
-		return null;
+		int i = integerList2.get(string);
+		integerList2.put(string, i++);
+		return this;
 	}
 
 	public StateMachine decrement(String string) {
-		// TODO Auto-generated method stub
-		return null;
+		int i = integerList2.get(string);
+		integerList2.put(string, i--);
+		return this;
 	}
 
 	public StateMachine ifEquals(String string, int i) {
-		// TODO Auto-generated method stub
-		return null;
+	//	int j = integerList2.get(string);
+	//	return i==j? true : false; 	
+		return this;
 	}
 
 	public StateMachine ifGreaterThan(String string, int i) {
