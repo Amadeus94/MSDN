@@ -9,18 +9,20 @@ import java.util.Map;
 public class Machine {
 	
 	private List<State> states = new ArrayList<State>();
-	private State  initialState;
-	private List<String> integerList = new ArrayList<>();
-	private Map<String, Integer> integerList2 = new HashMap<>();
+	private State  initialState; // is this also current state or should create new one ? 
+	
+	public Map<String, Integer> integerHashMap = new HashMap<>();
 	
 	
 	
-	public Machine(Collection<State> states, State initialState, List<String> integerList, Map<String, Integer> integerList2 ) {
+	public Machine(Collection<State> states, State initialState, List<String> integerList) {
 		super();
 		this.states.addAll(states);
 		this.initialState = initialState;
-		this.integerList = integerList;
-		this.integerList2 =integerList2;
+		
+		for(String s: integerList) {
+			integerHashMap.put(s, 0);
+		}
 	}
 
 	public List<State> getStates() {
@@ -42,18 +44,24 @@ public class Machine {
 
 	public int numberOfIntegers() {
 		//return integerList.size();
-		return integerList2.size();
+		return integerHashMap.size(); //hash
 	}
 
 	public boolean hasInteger(String ints) {
-		for( String t: integerList){
-			if(t == ints) {
-				return true;
-			}
-	}
-		return false;
+		return integerHashMap.containsKey(ints);
 		
+//		for( String t: integerHashMap){
+//			if(t == ints) {
+//				return true;
+//			}
+//	}
+//		return false;
+//		
 	}
+	
+	
+	
+	
 
 		
 	}

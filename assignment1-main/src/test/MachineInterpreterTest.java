@@ -94,7 +94,7 @@ public class MachineInterpreterTest {
 		interpreter.run(m);
 		assertEquals(0, interpreter.getInteger("var"));
 	}
-	
+
 	@Test
 	public void transitionSetVariable() {
 		Machine m = stateMachine.
@@ -107,7 +107,7 @@ public class MachineInterpreterTest {
 		interpreter.processEvent("SET");
 		assertEquals(42, interpreter.getInteger("var"));
 	}
-	
+	// Komin hertil 
 	@Test
 	public void transitionIncrementVariable() {
 		Machine m = stateMachine.

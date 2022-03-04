@@ -10,19 +10,32 @@ public class MachineInterpreter {
 	private State currentState; // runtime State
 
 	public void run(Machine m) {
-		// TODO Auto-generated method stub	
+		this.machine = m;
+		currentState = machine.getInitialState();
 	}
 
 	public State getCurrentState() {
-		// TODO Auto-generated method stub
-		return null;
+		return currentState;
 	}
 
 	public void processEvent(String event) {
 		for(Transition t: currentState.getTransitions()) {
 			if(t.getEvent().equals(event)) {
 			//	t.effect();
+				if(t.getEvent().equals("SET"))
+					this.machine.integerHashMap.put(t.getOperationalVariableName(),t.getOperationVariableValue());
+				else if(t.getEvent().equals("INCREMENT"))
+					this.machine.integerHashMap.put(t.getOperationalVariableName(),this.machine.integerHashMap.get(t.getOperationalVariableName()));
+				
+				
+				// I think I need separate operations from events to make this work in transition
+				
+				
+				
+				
 				currentState = t.getTarget();
+				
+				
 				return;
 			}
 		}
@@ -30,8 +43,7 @@ public class MachineInterpreter {
 	}
 
 	public int getInteger(String string) {
-		// TODO Auto-generated method stub
-		return 0;
+		return machine.integerHashMap.get(string);
 	}
 
 }

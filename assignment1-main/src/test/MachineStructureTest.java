@@ -86,6 +86,8 @@ public class MachineStructureTest {
 		assertTrue(transitions.isEmpty());
 	}
 	
+	
+
 	@Test
 	public void transitions() {
 		Machine m = stateMachine.

@@ -6,13 +6,47 @@ import java.util.List;
 import java.util.Map;
 
 public class Transition {
-	private String event;
+	private String event; //Operation
 	private State to;
-	private Runnable effect; 
-	//private List<String> = new ArrayList<>();
-    private Map<String, Transition> operations  = new HashMap<String, Transition>();
 	
-    
+
+	private String operationVariableName;
+	private int operationVariableValue;
+	
+
+	private String conditionVariableName;
+	private int conditionComparedValue;
+	private String condition;
+
+	
+	
+	public int getOperationVariableValue() {
+		return operationVariableValue;
+	}
+
+	public void setOperationVariableValue(int operationVariableValue) {
+		this.operationVariableValue = operationVariableValue;
+	}
+
+	
+	public String getCondition() {
+		return condition;
+	}
+
+	public void setCondition(String condition) {
+		this.condition = condition;
+	}
+
+	public void setConditionComparedValue(int conditionVariableValue) {
+		this.conditionComparedValue = conditionVariableValue;
+	}
+
+	public void setConditionVariableName(String conditionVariableName) {
+		this.conditionVariableName = conditionVariableName;
+	}
+	
+	
+	
     public Transition(String event, State to) {
 		super();
 		this.event = event;
@@ -22,6 +56,11 @@ public class Transition {
 	public Object getEvent() {
 		return event;
 	}
+	
+	public void SetEvent(String event) {
+		this.event = event;
+	}
+
 
 	public State getTarget() {
 		return to;
@@ -29,55 +68,59 @@ public class Transition {
 
 	public boolean hasSetOperation() {
 		return event =="SET" ? true: false;
-		//return operations.containsKey("SET") ? true: false;
 	}
 	
 	
 	public boolean hasIncrementOperation() {
-		return operations.containsKey("INCREMENT") ? true: false;
+		return event == "INCREMENT" ? true: false;
 	}
 
 	public boolean hasDecrementOperation() {
-		return operations.containsKey("DECREMENT") ? true: false;
+		return event == "DECREMENT" ? true: false;
 	}
 
 	public String getOperationVariableName() {
-		return event;
+		// ie get "var"
+		return operationVariableName;
 	}
 
 	public boolean isConditional() {
-		// TODO Auto-generated method stub
-		return false;
+//		if(conditionVariableName == "GREATER" || conditionVariableName == "GREATERTHAN" || conditionVariableName == "LESSTHAN" )
+//			return true;
+//		return false;
+		return this.conditionVariableName != null;
 	}
 
 	public Object getConditionVariableName() {
-		// TODO Auto-generated method stub
-		return null;
+		return conditionVariableName;
 	}
 
 	public Integer getConditionComparedValue() {
-		// TODO Auto-generated method stub
-		return null;
+		return conditionComparedValue;
 	}
 
 	public boolean isConditionEqual() {
-		// TODO Auto-generated method stub
-		return false;
+		return condition == "EQUALS" ? true: false;
 	}
 
 	public boolean isConditionGreaterThan() {
-		// TODO Auto-generated method stub
-		return false;
+		return condition == "GREATERTHAN" ? true: false;
 	}
 
 	public boolean isConditionLessThan() {
-		// TODO Auto-generated method stub
-		return false;
+		return condition == "LESSTHAN" ? true: false;
 	}
 
 	public boolean hasOperation() {
-		// TODO Auto-generated method stub
-		return false;
+		return event==null ? false :true;
+	}
+
+	public String getOperationalVariableName() {
+		return operationVariableName;
+	}
+
+	public void setOperationalVariableName(String operationalVariableName) {
+		this.operationVariableName = operationalVariableName;
 	}
 
 }

@@ -32,6 +32,14 @@ public class State {
 				return t;
 			}
 		}
+		//Easy fix now -- fix later
+		for( Transition t: trans){
+			if(t.getEvent() == "GO") {
+				return t;
+			}
+		}
+		
+		
 		return null;
 	}
 }
