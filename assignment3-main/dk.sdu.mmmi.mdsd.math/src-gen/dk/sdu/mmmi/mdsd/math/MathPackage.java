@@ -68,13 +68,22 @@ public interface MathPackage extends EPackage
   int MATH_EXP = 0;
 
   /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MATH_EXP__NAME = 0;
+
+  /**
    * The feature id for the '<em><b>Variables</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int MATH_EXP__VARIABLES = 0;
+  int MATH_EXP__VARIABLES = 1;
 
   /**
    * The number of structural features of the '<em>Exp</em>' class.
@@ -83,7 +92,7 @@ public interface MathPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MATH_EXP_FEATURE_COUNT = 1;
+  int MATH_EXP_FEATURE_COUNT = 2;
 
   /**
    * The meta object id for the '{@link dk.sdu.mmmi.mdsd.math.impl.BindingImpl <em>Binding</em>}' class.
@@ -431,6 +440,17 @@ public interface MathPackage extends EPackage
   EClass getMathExp();
 
   /**
+   * Returns the meta object for the attribute '{@link dk.sdu.mmmi.mdsd.math.MathExp#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see dk.sdu.mmmi.mdsd.math.MathExp#getName()
+   * @see #getMathExp()
+   * @generated
+   */
+  EAttribute getMathExp_Name();
+
+  /**
    * Returns the meta object for the containment reference list '{@link dk.sdu.mmmi.mdsd.math.MathExp#getVariables <em>Variables</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -727,6 +747,14 @@ public interface MathPackage extends EPackage
      * @generated
      */
     EClass MATH_EXP = eINSTANCE.getMathExp();
+
+    /**
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute MATH_EXP__NAME = eINSTANCE.getMathExp_Name();
 
     /**
      * The meta object literal for the '<em><b>Variables</b></em>' containment reference list feature.

@@ -7,6 +7,7 @@
   <genPackages prefix="Math" basePackage="dk.sdu.mmmi.mdsd" disposableProviderFactory="true"
       fileExtensions="math" ecorePackage="Math.ecore#/">
     <genClasses ecoreClass="Math.ecore#//MathExp">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Math.ecore#//MathExp/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Math.ecore#//MathExp/variables"/>
     </genClasses>
     <genClasses ecoreClass="Math.ecore#//VarBinding">

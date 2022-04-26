@@ -1,0 +1,22 @@
+		
+	package math_expression.test;
+	public class Test02 {
+		
+		public int x;
+		
+//	  	private External external;
+	  	
+//	  	public MathComputation(External external) {
+//	    	this.external = external;
+//	  	}
+		
+	  	public void compute() {
+	  		x = 40 + 2;
+//	    	x = 2 + 2;
+//	    	y = this.external.sqrt(x);
+	  	}
+		
+	  	interface External {
+	    	public int sqrt(int n);
+	  	}
+}

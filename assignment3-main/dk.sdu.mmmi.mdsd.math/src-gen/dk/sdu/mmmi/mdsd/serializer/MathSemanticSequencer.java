@@ -217,7 +217,7 @@ public class MathSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     MathExp returns MathExp
 	 *
 	 * Constraint:
-	 *     variables+=VarBinding+
+	 *     (name=ID variables+=VarBinding*)
 	 */
 	protected void sequence_MathExp(ISerializationContext context, MathExp semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

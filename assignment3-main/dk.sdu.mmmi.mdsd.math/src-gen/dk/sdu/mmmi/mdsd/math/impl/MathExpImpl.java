@@ -9,6 +9,7 @@ import dk.sdu.mmmi.mdsd.math.VarBinding;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
@@ -16,6 +17,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
@@ -29,6 +31,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link dk.sdu.mmmi.mdsd.math.impl.MathExpImpl#getName <em>Name</em>}</li>
  *   <li>{@link dk.sdu.mmmi.mdsd.math.impl.MathExpImpl#getVariables <em>Variables</em>}</li>
  * </ul>
  *
@@ -36,6 +39,26 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class MathExpImpl extends MinimalEObjectImpl.Container implements MathExp
 {
+  /**
+   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getName()
+   * @generated
+   * @ordered
+   */
+  protected static final String NAME_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getName()
+   * @generated
+   * @ordered
+   */
+  protected String name = NAME_EDEFAULT;
+
   /**
    * The cached value of the '{@link #getVariables() <em>Variables</em>}' containment reference list.
    * <!-- begin-user-doc -->
@@ -65,6 +88,31 @@ public class MathExpImpl extends MinimalEObjectImpl.Container implements MathExp
   protected EClass eStaticClass()
   {
     return MathPackage.Literals.MATH_EXP;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String getName()
+  {
+    return name;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setName(String newName)
+  {
+    String oldName = name;
+    name = newName;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MathPackage.MATH_EXP__NAME, oldName, name));
   }
 
   /**
@@ -108,6 +156,8 @@ public class MathExpImpl extends MinimalEObjectImpl.Container implements MathExp
   {
     switch (featureID)
     {
+      case MathPackage.MATH_EXP__NAME:
+        return getName();
       case MathPackage.MATH_EXP__VARIABLES:
         return getVariables();
     }
@@ -125,6 +175,9 @@ public class MathExpImpl extends MinimalEObjectImpl.Container implements MathExp
   {
     switch (featureID)
     {
+      case MathPackage.MATH_EXP__NAME:
+        setName((String)newValue);
+        return;
       case MathPackage.MATH_EXP__VARIABLES:
         getVariables().clear();
         getVariables().addAll((Collection<? extends VarBinding>)newValue);
@@ -143,6 +196,9 @@ public class MathExpImpl extends MinimalEObjectImpl.Container implements MathExp
   {
     switch (featureID)
     {
+      case MathPackage.MATH_EXP__NAME:
+        setName(NAME_EDEFAULT);
+        return;
       case MathPackage.MATH_EXP__VARIABLES:
         getVariables().clear();
         return;
@@ -160,10 +216,29 @@ public class MathExpImpl extends MinimalEObjectImpl.Container implements MathExp
   {
     switch (featureID)
     {
+      case MathPackage.MATH_EXP__NAME:
+        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case MathPackage.MATH_EXP__VARIABLES:
         return variables != null && !variables.isEmpty();
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuilder result = new StringBuilder(super.toString());
+    result.append(" (name: ");
+    result.append(name);
+    result.append(')');
+    return result.toString();
   }
 
 } //MathExpImpl

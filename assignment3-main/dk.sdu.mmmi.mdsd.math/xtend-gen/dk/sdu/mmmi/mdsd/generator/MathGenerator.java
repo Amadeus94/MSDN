@@ -40,7 +40,10 @@ public class MathGenerator extends AbstractGenerator {
   @Override
   public void doGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
     final MathExp math = Iterators.<MathExp>filter(resource.getAllContents(), MathExp.class).next();
-    fsa.generateFile("MathExpression.java", this.compile(math));
+    String _name = math.getName();
+    String _plus = ("math_expression/" + _name);
+    String _plus_1 = (_plus + ".java");
+    fsa.generateFile(_plus_1, this.compile(math));
   }
   
   public CharSequence compile(final MathExp math) {
@@ -51,8 +54,11 @@ public class MathGenerator extends AbstractGenerator {
     _builder.append("package math_expression;");
     _builder.newLine();
     _builder.append("\t");
-    _builder.append("public class MathComputation {");
-    _builder.newLine();
+    _builder.append("public class ");
+    String _name = math.getName();
+    _builder.append(_name, "\t");
+    _builder.append(" {");
+    _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
     _builder.newLine();
     {
@@ -60,27 +66,23 @@ public class MathGenerator extends AbstractGenerator {
       for(final VarBinding variable : _variables) {
         _builder.append("\t\t");
         _builder.append("public int ");
-        String _name = variable.getName();
-        _builder.append(_name, "\t\t");
+        String _name_1 = variable.getName();
+        _builder.append(_name_1, "\t\t");
         _builder.append(";");
         _builder.newLineIfNotEmpty();
       }
     }
     _builder.append("\t\t");
     _builder.newLine();
-    _builder.append("\t  \t");
-    _builder.append("private External external;");
+    _builder.append("//\t  \tprivate External external;");
     _builder.newLine();
     _builder.append("\t  \t");
     _builder.newLine();
-    _builder.append("\t  \t");
-    _builder.append("public MathComputation(External external) {");
+    _builder.append("//\t  \tpublic MathComputation(External external) {");
     _builder.newLine();
-    _builder.append("\t    \t");
-    _builder.append("this.external = external");
+    _builder.append("//\t    \tthis.external = external;");
     _builder.newLine();
-    _builder.append("\t  \t");
-    _builder.append("}");
+    _builder.append("//\t  \t}");
     _builder.newLine();
     _builder.append("\t\t");
     _builder.newLine();
@@ -91,8 +93,8 @@ public class MathGenerator extends AbstractGenerator {
       EList<VarBinding> _variables_1 = math.getVariables();
       for(final VarBinding variable_1 : _variables_1) {
         _builder.append("\t  \t\t");
-        String _name_1 = variable_1.getName();
-        _builder.append(_name_1, "\t  \t\t");
+        String _name_2 = variable_1.getName();
+        _builder.append(_name_2, "\t  \t\t");
         _builder.append(" = ");
         String _compileExpression = MathGenerator.compileExpression(variable_1.getExpression());
         _builder.append(_compileExpression, "\t  \t\t");
@@ -100,11 +102,9 @@ public class MathGenerator extends AbstractGenerator {
         _builder.newLineIfNotEmpty();
       }
     }
-    _builder.append("\t    \t");
-    _builder.append("x = 2 + 2;");
+    _builder.append("//\t    \tx = 2 + 2;");
     _builder.newLine();
-    _builder.append("\t    \t");
-    _builder.append("y = this.external.sqrt(x);");
+    _builder.append("//\t    \ty = this.external.sqrt(x);");
     _builder.newLine();
     _builder.append("\t  \t");
     _builder.append("}");
@@ -172,23 +172,42 @@ public class MathGenerator extends AbstractGenerator {
   }
   
   protected static String _CompileExpression(final Minus exp) {
-    return "";
+    String _compileExpression = MathGenerator.compileExpression(exp.getLeft());
+    String _plus = ("" + _compileExpression);
+    String _plus_1 = (_plus + " - ");
+    String _compileExpression_1 = MathGenerator.compileExpression(exp.getRight());
+    return (_plus_1 + _compileExpression_1);
   }
   
   protected static String _CompileExpression(final Mult exp) {
-    return "";
+    String _compileExpression = MathGenerator.compileExpression(exp.getLeft());
+    String _plus = ("+" + _compileExpression);
+    String _plus_1 = (_plus + " * ");
+    String _compileExpression_1 = MathGenerator.compileExpression(exp.getRight());
+    return (_plus_1 + _compileExpression_1);
   }
   
   protected static String _CompileExpression(final Div exp) {
-    return "";
+    String _compileExpression = MathGenerator.compileExpression(exp.getLeft());
+    String _plus = ("" + _compileExpression);
+    String _plus_1 = (_plus + " / ");
+    String _compileExpression_1 = MathGenerator.compileExpression(exp.getRight());
+    return (_plus_1 + _compileExpression_1);
   }
   
   protected static String _CompileExpression(final LetBinding exp) {
-    return "";
+    String _compileExpression = MathGenerator.compileExpression(exp.getBody());
+    return ("" + _compileExpression);
   }
   
   protected static String _CompileExpression(final VariableUse exp) {
-    return "";
+    String _xblockexpression = null;
+    {
+      final Binding ref = exp.getRef();
+      boolean _matched = false;
+      _xblockexpression = "";
+    }
+    return _xblockexpression;
   }
   
   protected static int _computeExpression(final MathNumber exp) {

@@ -65,9 +65,9 @@ ruleMathExp
 	}
 	:
 	(
-		{ before(grammarAccess.getMathExpAccess().getVariablesAssignment()); }
-		(rule__MathExp__VariablesAssignment)*
-		{ after(grammarAccess.getMathExpAccess().getVariablesAssignment()); }
+		{ before(grammarAccess.getMathExpAccess().getGroup()); }
+		(rule__MathExp__Group__0)
+		{ after(grammarAccess.getMathExpAccess().getGroup()); }
 	)
 ;
 finally {
@@ -298,6 +298,87 @@ rule__Primary__Alternatives
 finally {
 	restoreStackSize(stackSize);
 }
+
+rule__MathExp__Group__0
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	rule__MathExp__Group__0__Impl
+	rule__MathExp__Group__1
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__MathExp__Group__0__Impl
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+(
+	{ before(grammarAccess.getMathExpAccess().getProgramKeyword_0()); }
+	'program'
+	{ after(grammarAccess.getMathExpAccess().getProgramKeyword_0()); }
+)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__MathExp__Group__1
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	rule__MathExp__Group__1__Impl
+	rule__MathExp__Group__2
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__MathExp__Group__1__Impl
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+(
+	{ before(grammarAccess.getMathExpAccess().getNameAssignment_1()); }
+	(rule__MathExp__NameAssignment_1)
+	{ after(grammarAccess.getMathExpAccess().getNameAssignment_1()); }
+)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__MathExp__Group__2
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	rule__MathExp__Group__2__Impl
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__MathExp__Group__2__Impl
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+(
+	{ before(grammarAccess.getMathExpAccess().getVariablesAssignment_2()); }
+	(rule__MathExp__VariablesAssignment_2)*
+	{ after(grammarAccess.getMathExpAccess().getVariablesAssignment_2()); }
+)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
 
 rule__VarBinding__Group__0
 	@init {
@@ -1163,15 +1244,30 @@ finally {
 }
 
 
-rule__MathExp__VariablesAssignment
+rule__MathExp__NameAssignment_1
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 	(
-		{ before(grammarAccess.getMathExpAccess().getVariablesVarBindingParserRuleCall_0()); }
+		{ before(grammarAccess.getMathExpAccess().getNameIDTerminalRuleCall_1_0()); }
+		RULE_ID
+		{ after(grammarAccess.getMathExpAccess().getNameIDTerminalRuleCall_1_0()); }
+	)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__MathExp__VariablesAssignment_2
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	(
+		{ before(grammarAccess.getMathExpAccess().getVariablesVarBindingParserRuleCall_2_0()); }
 		ruleVarBinding
-		{ after(grammarAccess.getMathExpAccess().getVariablesVarBindingParserRuleCall_0()); }
+		{ after(grammarAccess.getMathExpAccess().getVariablesVarBindingParserRuleCall_2_0()); }
 	)
 ;
 finally {

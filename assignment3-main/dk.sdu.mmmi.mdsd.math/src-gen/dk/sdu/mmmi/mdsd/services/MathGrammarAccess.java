@@ -26,19 +26,37 @@ public class MathGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 	
 	public class MathExpElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "dk.sdu.mmmi.mdsd.Math.MathExp");
-		private final Assignment cVariablesAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cVariablesVarBindingParserRuleCall_0 = (RuleCall)cVariablesAssignment.eContents().get(0);
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cProgramKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final Assignment cVariablesAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cVariablesVarBindingParserRuleCall_2_0 = (RuleCall)cVariablesAssignment_2.eContents().get(0);
 		
 		//MathExp:
+		//    'program' name=ID
 		//    variables += VarBinding*    // Called varBindings in guide
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
+		//'program' name=ID
 		//variables += VarBinding*
-		public Assignment getVariablesAssignment() { return cVariablesAssignment; }
+		public Group getGroup() { return cGroup; }
+		
+		//'program'
+		public Keyword getProgramKeyword_0() { return cProgramKeyword_0; }
+		
+		//name=ID
+		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+		
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
+		
+		//variables += VarBinding*
+		public Assignment getVariablesAssignment_2() { return cVariablesAssignment_2; }
 		
 		//VarBinding
-		public RuleCall getVariablesVarBindingParserRuleCall_0() { return cVariablesVarBindingParserRuleCall_0; }
+		public RuleCall getVariablesVarBindingParserRuleCall_2_0() { return cVariablesVarBindingParserRuleCall_2_0; }
 	}
 	public class VarBindingElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "dk.sdu.mmmi.mdsd.Math.VarBinding");
@@ -390,6 +408,7 @@ public class MathGrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 
 	
 	//MathExp:
+	//    'program' name=ID
 	//    variables += VarBinding*    // Called varBindings in guide
 	//;
 	public MathExpElements getMathExpAccess() {

@@ -189,9 +189,20 @@ public class MathPackageImpl extends EPackageImpl implements MathPackage
    * @generated
    */
   @Override
+  public EAttribute getMathExp_Name()
+  {
+    return (EAttribute)mathExpEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EReference getMathExp_Variables()
   {
-    return (EReference)mathExpEClass.getEStructuralFeatures().get(0);
+    return (EReference)mathExpEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -490,6 +501,7 @@ public class MathPackageImpl extends EPackageImpl implements MathPackage
 
     // Create classes and their features
     mathExpEClass = createEClass(MATH_EXP);
+    createEAttribute(mathExpEClass, MATH_EXP__NAME);
     createEReference(mathExpEClass, MATH_EXP__VARIABLES);
 
     varBindingEClass = createEClass(VAR_BINDING);
@@ -568,6 +580,7 @@ public class MathPackageImpl extends EPackageImpl implements MathPackage
 
     // Initialize classes and features; add operations and parameters
     initEClass(mathExpEClass, MathExp.class, "MathExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getMathExp_Name(), ecorePackage.getEString(), "name", null, 0, 1, MathExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getMathExp_Variables(), this.getVarBinding(), null, "variables", null, 0, -1, MathExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(varBindingEClass, VarBinding.class, "VarBinding", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
